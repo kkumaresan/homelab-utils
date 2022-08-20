@@ -1,0 +1,2 @@
+192.168.10.14:/mnt/cloud /mnt/cloud nfs defaults 0 0
+192.168.10.14:/mnt/media /mnt/media nfs defaults 0 0
