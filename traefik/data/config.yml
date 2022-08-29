@@ -13,7 +13,7 @@ http:
     pihole:
       entryPoints:
         - "https"
-      rule: "Host(`pihole.kkumaresan.com`)"
+      rule: "Host(`pihole.kkumaresan.com`, `pihole.home.arpa`)"
       middlewares:
         - default-headers
         - addprefix-pihole
@@ -32,7 +32,7 @@ http:
     portainer:
       entryPoints:
         - "https"
-      rule: "Host(`portainer.kkumaresan.com`)"
+      rule: "Host(`portainer.kkumaresan.com`, `portainer.home.arpa`)"
       middlewares:
         - default-headers
         - https-redirectscheme
@@ -113,17 +113,17 @@ http:
     pihole:
       loadBalancer:
         servers:
-          - url: "http://192.168.0.101:80"
+          - url: "http://192.168.10.10:80"
         passHostHeader: true
     truenas:
       loadBalancer:
         servers:
-          - url: "https://192.168.10.20"
+          - url: "https://192.168.10.250"
         passHostHeader: true
     portainer:
       loadBalancer:
         servers:
-          - url: "http://192.168.10.18:9000"
+          - url: "http://192.168.10.20:9000"
         passHostHeader: true
     # plex:
     #   loadBalancer:
