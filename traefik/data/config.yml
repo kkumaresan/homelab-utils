@@ -38,6 +38,15 @@ http:
         - https-redirectscheme
       tls: {}
       service: portainer
+    nextcloud:
+      entryPoints:
+        - "https"
+      rule: "Host(`cloud.kkumaresan.com`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: nextcloud
     # plex:
     #   entryPoints:
     #     - "https"
@@ -124,6 +133,11 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.10.20:9000"
+        passHostHeader: true
+    nextcloud:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.10.20:8090"
         passHostHeader: true
     # plex:
     #   loadBalancer:

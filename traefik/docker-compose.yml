@@ -26,18 +26,20 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.kkumaresan.com`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.kkumaresan.com`) || Host(`traefik.home.arpa`)"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$FgM4z8v8$$pJLWT7JjLBSMQw.mF0CH80"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
-      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.kkumaresan.com`)"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.kkumaresan.com`) || Host(`traefik.home.arpa`)"
       - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
       - "traefik.http.routers.traefik-secure.tls=true"
       - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
       - "traefik.http.routers.traefik-secure.tls.domains[0].main=kkumaresan.com"
+      - "traefik.http.routers.traefik-secure.tls.domains[1].main=home.arpa"
       - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.kkumaresan.com"
+      - "traefik.http.routers.traefik-secure.tls.domains[1].sans=*.home.arpa"
       - "traefik.http.routers.traefik-secure.service=api@internal"
 
 networks:
